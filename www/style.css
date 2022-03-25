@@ -1,0 +1,297 @@
+body {
+  background-color: rgba(225, 223, 221, 0.2);
+  /*min-height: 611px;*/
+  margin: 0 !important;
+  /*height:90%;*/
+}
+
+.ms-Nav {
+  background-color: white;
+}
+
+.third-column {
+  display:flex;
+  height:100%;
+}
+
+.third-container {
+  position:relative;
+  width:100%;
+}
+
+.ui.form .field {
+  margin: 0 0 0.5em;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 50px 1fr 25px;
+  grid-template-areas: "header_left header_right" "sidenav main" "footer footer";
+  height: 100vh;
+}
+
+.grid-inside-up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "well well";
+  height: 42vh;
+  padding: 0;
+  margin: 0;
+}
+/*
+.tag-container {
+  position:relative;
+}
+*/
+.drop-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+.drop-container .ui.form {
+  width: 263px;
+}
+
+[id$='select_UI_id'] .ui.button {
+  width: 231px;
+}
+
+.ui.button {
+  line-height: 1.2em;
+}
+
+.form-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: "inputs empty45" "inputs button";
+  /*position:relative;*/
+}
+
+.form-inputs {
+  grid-area: "inputs";
+}
+
+.form-button {
+  grid-area: "button";
+  padding: 30px;
+  position: relative;
+}
+
+.form-button #mod_form-update {
+  position: absolute;
+  bottom:0;
+}
+
+.grid-form {
+  height: auto;
+  width: 25vw;
+  padding: 0;
+  margin: 0;
+  min-width: 375px;
+}
+
+.ms-DetailsList {
+  /*overflow: scroll;*/
+  width: auto;
+}
+
+.ms-DetailsList > * {
+align-items: normal;
+}
+
+element.style {
+  margin: 0;
+}
+
+.ui.segment:first-child {
+  margin-top: 10px;
+}
+
+.leaflet-pane > canvas {
+  border-radius: 5px;
+  border-style: solid;
+}
+
+.map-container {
+  margin: 10px 10px 0;
+  /*padding: 10px 10px 0;*/
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #d3d3d3;
+  border-width: 1px;
+  overflow-x: auto;
+}
+/*.well ,*/
+.ui.segment {
+  margin: 10px 10px 0 5px;
+  padding: 10px 10px 0 10px; /*3 t rl b*/
+  border-radius: 4px;
+  border-style: solid;
+  border-color: #d3d3d3;
+  border-width: 1px;
+  overflow-x: auto;
+  background-color: #fff;
+}
+
+.grid-inside-down {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-areas: "downleft downright";
+  height: 5vh;
+  /*max-width: calc(100vw - 320px);*/
+  padding: 5px 0px 0px 5px;
+  position: relative;
+}
+
+.downleft {
+  grid-area: downleft;
+  max-width: 300px;
+}
+
+.downright {
+  grid-area: downright;
+  margin:  10px 10px 0;
+  /*max-width: 95vw;*/
+  max-height:35vh;
+  width:62.5vw;
+/*  padding: 10px 10px 0;*/
+}
+
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  max-width: 300px;
+}
+
+.calendar1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.ui.selection.dropdown, 
+.ui.form input[type=number], 
+.ms-TextField-fieldGroup {
+  border: 1px solid #000000;
+}
+
+.ui.fluid.selection.dropdown .ui.form {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  min-width: calc(25% - 1em);
+  background-color: red;
+  height: 2em;
+  max-width: 50%;
+}
+
+.ms-Nav-link:hover {
+  text-decoration: none; 
+}
+
+.ms-Nav-link:not(:hover){ 
+  text-decoration: none; 
+}
+
+/* Assign grid instructions to our parent grid container */
+
+.plot-container{
+  grid-area: plot;
+  max-width: 500px;
+  padding:0;
+  margin:0;
+  position: relative;
+  /*overflow-y: hidden;*/
+}
+
+.y-container{
+  grid-area: y;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*max-width: 150px;*/
+}
+
+.x-container .ui.form .field {
+  position:fixed;
+  z-index: 2;
+}
+
+.data-container{
+  grid-area: data;
+  padding-top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat-container{
+  grid-area: cat;
+  padding-top: 30px;
+}
+/* Give every child element its grid name */
+
+.header_left {
+  grid-area: header_left;
+  background-color: #fff;
+  padding: 6px 0px 6px 10px;
+  display: flex;
+}
+
+.header_right {
+  grid-area: header_right;
+  background-color: #fff;
+  padding: 6px 0px 6px 10px;
+  display: flex;
+}
+
+.logo {
+  height: 44px;
+}
+
+.sidenav {
+  grid-area: sidenav;
+  background-color: #fff;
+  padding: 25px;
+  width: 320px;
+}
+
+.main {
+  grid-area: main;
+  background-color: #faf9f8;
+  padding-left: 40px;
+  padding-right: 32px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  max-width: calc(100vw - 320px);
+  /*max-height: calc(100vh - 80px);*/
+  overflow: auto;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: #f3f2f1;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plotcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  padding: 0px 14px 0px 14px;
+  color: #737373;
+  margin: 6px 0px 6px 10px;
+  border-left: 1px solid darkgray;
+}

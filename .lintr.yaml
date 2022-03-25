@@ -1,0 +1,11 @@
+files:
+  - app.R
+directories:
+  - modules
+  - layout
+  - helper
+  - mongo
+linters:
+  infix_spaces_linter: null # Looks bad with box.
+  line_length_linter: !expr lintr::line_length_linter(150)
+  object_usage_linter: null # Doesn't work with box.

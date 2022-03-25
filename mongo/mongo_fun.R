@@ -1,0 +1,94 @@
+basic_colombia <- function() {
+
+  collection_name <- "colombia_big"
+  database_name <- "kujakuja"
+
+  # if(!exists("db_col")) {
+  db_col <- connectdb(collection_name, database_name)
+  # }
+  center_init <- "Cundinamarca"
+  find_string <- paste0('{"state":"', center_init, '"}')
+
+  dataset <- read_data(
+    db_col, find_string, 1500,
+    paste0('{\"$natural\":', -1, "}")
+  )
+
+  dataset <- colombia_coord_date(dataset)
+
+  filter_cols <- setdiff(colnames(dataset), unwanted_columns)
+
+  no_idea <- setdiff(filter_cols, "idea")
+
+  dataset <- dataset[, c("idea", no_idea)]
+}
+
+basic_africa <- function() {
+  collection_name <- "africa_big"
+  database_name <- "kujakuja"
+
+  if (!exists("db_afr")) {
+    db_afr <- connectdb(collection_name, database_name)
+  }
+
+  find_string <- paste0(
+    '{"country_name":"', input$africa_country_input, '"',
+    ', "location_name":"', input$center_input, '"}'
+  )
+  dataset <- read_data(
+    db_afr, find_string, input$max_input,
+    paste0('{\"$natural\":', input$old_new_input, "}")
+  )
+  dataset <- africa_coord_date(dataset)
+}
+
+connectdb <- function(collection_name, database_name) {
+  db <- tryCatch(
+    mongo(
+      collection = collection_name,
+      url = sprintf(
+        "mongodb+srv://%s:%s@%s/%s%s",
+        options()$mongodb$username,
+        options()$mongodb$password,
+        options()$mongodb$host,
+        database_name,
+        "?sockettimeoutms=1200000"
+      )
+    ),
+    error = function(e) {
+      print(paste("42 no internet"))
+      "no internet"
+    }
+  )
+  return(db)
+}
+
+read_data <- function(connection, find_string, mylimit, mysort) {
+  data <-
+    connection$find(find_string, limit = mylimit, sort = mysort)
+  return(data)
+}
+
+######################################################################
+#
+# used 1 time for uploading data to mongodb !!!
+#
+######################################################################
+
+save_data <- function(data, collection_name, database_name) {
+  db <- tryCatch(mongo(
+    collection = collection_name,
+    url = sprintf(
+      "mongodb+srv://%s:%s@%s/%s",
+      options()$mongodb$username,
+      options()$mongodb$password,
+      options()$mongodb$host,
+      database_name
+    )
+  ), error = function(e) {
+    print(paste("25 no internet"))
+    "no internet"
+  })
+  db$insert(data)
+}
+
