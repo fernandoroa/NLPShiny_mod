@@ -48,7 +48,7 @@ main_page <- tagList(
     ),
     div(
       class = "map-container",
-      modMap_UI("nsMap")
+      mod_map_ui("nsMap")
     )
   ),
   div(

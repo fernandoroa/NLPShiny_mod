@@ -16,11 +16,13 @@ if (file.exists("outfiles/health_df.csv")) {
   file.remove("outfiles/health_df.csv")
 }
 
+source("helper/objects_NLP.R")
+source("helper/functions_NLP.R")
+
 source("mongo/mongo.R")
 source("mongo/mongo_fun.R")
 
-source("helper/objects_NLP.R")
-source("helper/functions_NLP.R")
+dataset_init <- basic_colombia()
 
 source("modules/mod_map.R")
 source("modules/mod_submit.R")
@@ -28,6 +30,7 @@ source("modules/mod_table.R")
 source("modules/mod_unify.R")
 source("modules/modtag.R")
 source("modules/mod_services.R")
+source("modules/modules.R")
 
 source("layout/headers_footer.R")
 source("layout/pages.R")

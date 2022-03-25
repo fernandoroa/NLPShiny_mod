@@ -9,3 +9,4 @@ rsconnect/
 ignore/
 README.Rmd
 mongo/mongo.R
+.Renviron
