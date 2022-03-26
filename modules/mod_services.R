@@ -11,7 +11,7 @@ servicetype_ui <- function(id) {
   )
 }
 
-servicetype_server <- function(id, vars_unifier, vars_other_dataset) {
+servicetype_server <- function(id, vars_unifier, vars_submit) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     rv <- reactiveValues(click_count = 0)
@@ -47,8 +47,8 @@ servicetype_server <- function(id, vars_unifier, vars_other_dataset) {
       })
 
       observeEvent(
-        input[[paste0(id, "_subset_button")]], {
-
+        input[[paste0(id, "_subset_button")]],
+        {
           rv$click_count <- rv$click_count + runif(1, 1, 2)
           session$sendCustomMessage(
             type = "testmessage",
@@ -58,20 +58,17 @@ servicetype_server <- function(id, vars_unifier, vars_other_dataset) {
         ignoreInit = T
       )
 
+      observeEvent(c(
+        vars_submit$submit(),
+        input[[paste0(id, "_subset_button")]]
+      ),
+      ignoreInit = T,
+      {
+        rv$alist$ds_copy <- vars_unifier$dataset_whole()
+      }
+      )
+
       observeEvent(input[[paste0(id, "_subset_button")]], ignoreInit = T, {
-
-        #
-        #    creation alist dscopy
-        #
-
-        if (!is.null(vars_unifier$dataset_not_subset())) {
-          rv$alist$ds_copy <- vars_unifier$dataset_not_subset()
-        } else {
-          rv$alist$ds_copy <- vars_unifier$dataset()
-        }
-
-        # ceration dataset_cash_health
-
         rv$alist$dataset_cash_health <- rv$alist$ds_copy[which(rv$alist$ds_copy$nlp_tag %in%
           input[[paste0(id, "_input")]]), ]
 
@@ -79,7 +76,7 @@ servicetype_server <- function(id, vars_unifier, vars_other_dataset) {
           file.remove("outfiles/selection.csv")
         }
 
-        rv$dataset <- rv$alist$dataset_cash_health
+        rv$dataset_subset <- rv$alist$dataset_cash_health
 
         write.csv(tolower(rv$dataset[, "idea"]), "outfiles/selection.csv", row.names = T)
       })
@@ -87,8 +84,8 @@ servicetype_server <- function(id, vars_unifier, vars_other_dataset) {
 
     return(
       list(
-        dataset = reactive({
-          rv[["dataset"]]
+        dataset_subset = reactive({
+          rv[["dataset_subset"]]
         }),
         dataset_not_subset = reactive({
           rv$alist$ds_copy

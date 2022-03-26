@@ -13,44 +13,47 @@ unifier_server <- function(id, dataset_init, vars_submit,
                            vars_tag, vars_cash, vars_health) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    center_init<-"Cundinamarca"
+    center_init <- "Cundinamarca"
     lng1 <- col_states_coord[which(col_states_coord$state %in% center_init), ]$lng
     lat1 <- col_states_coord[which(col_states_coord$state %in% center_init), ]$lat
 
-    values <- reactiveValues(dataset = dataset_init, 
-                             cash_cat = F,
-                             region = 1,
-                             lat = lat1,
-                             lng = lng1
-                             )
+    values <- reactiveValues(
+      dataset = dataset_init,
+      dataset_whole = dataset_init,
+      cash_cat = F,
+      region = 1,
+      lat = lat1,
+      lng = lng1
+    )
 
     observe({
       values[["dataset"]] <- vars_submit$dataset()
+      values[["dataset_whole"]] <- vars_submit$dataset()
+
       values[["region"]] <- vars_submit$region()
       values[["lat"]] <- vars_submit$lat()
       values[["lng"]] <- vars_submit$lng()
-
+      values[["dataset_not_subset"]] <- NULL
+      values[["allow_sub"]] <- vars_submit$allow_sub()
 
       shinyjs::hide("cash_select_UI_id", asis = T)
       shinyjs::hide("health_select_UI_id", asis = T)
       shinyjs::enable("mod_tag-tag_button", asis = T)
-      values[["dataset_not_subset"]] <- NULL
-    }) %>% bindEvent(vars_submit$dataset(), ignoreInit = T)
+    }) %>% bindEvent(vars_submit$submit(), ignoreInit = T)
 
     observe({
-      values[["dataset"]] <- vars_tag$dataset()
+      values[["dataset"]] <- vars_tag$dataset_tag()
+      values[["dataset_whole"]] <- vars_tag$dataset_tag()
       values[["cash_cat"]] <- vars_tag$cash_cat()
       values[["health_cat"]] <- vars_tag$health_cat()
-    }) %>% bindEvent(vars_tag$dataset(), ignoreInit = T)
+    }) %>% bindEvent(vars_tag$dataset_tag(), ignoreInit = T)
 
     observe({
-      values[["dataset"]] <- vars_cash$dataset()
-      values[["dataset_not_subset"]] <- vars_cash$dataset_not_subset()
+      values[["dataset"]] <- vars_cash$dataset_subset()
     }) %>% bindEvent(vars_cash$click_count(), ignoreInit = T)
 
     observe({
-      values[["dataset"]] <- vars_health$dataset()
-      values[["dataset_not_subset"]] <- vars_health$dataset_not_subset()
+      values[["dataset"]] <- vars_health$dataset_subset()
     }) %>% bindEvent(vars_health$click_count(), ignoreInit = T)
 
     return(
@@ -58,8 +61,8 @@ unifier_server <- function(id, dataset_init, vars_submit,
         dataset = reactive({
           values$dataset
         }),
-        dataset_not_subset = reactive({
-          values$dataset_not_subset
+        dataset_whole = reactive({
+          values$dataset_whole
         }),
         cash_cat = reactive({
           values$cash_cat
@@ -75,7 +78,8 @@ unifier_server <- function(id, dataset_init, vars_submit,
         }),
         lng = reactive({
           values$lng
-        })
+        }),
+        allow_sub = reactive(values$allow_sub)
       )
     )
   })

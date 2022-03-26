@@ -50,7 +50,7 @@ submit_ui <- function(id) {
           tags$div(
             style = "max-width:200px;", tags$div(strong("From")),
             DatePicker.shinyInput(ns("dateInput_from"),
-              format_date = format_date,
+              formatDate = format_date,
               value = "2016-01-01"
             )
           ),
@@ -58,7 +58,7 @@ submit_ui <- function(id) {
           tags$div(
             style = "max-width:200px;", tags$div(strong("To")),
             DatePicker.shinyInput(ns("dateInput_to"),
-              format_date = format_date,
+              formatDate = format_date,
               value = Sys.Date()
             )
           )
@@ -80,7 +80,7 @@ submit_ui <- function(id) {
         shiny.semantic::checkbox_input(
           input_id = ns("allNoneInput"),
           label = "All/None",
-          is_marked = TRUE,
+          is_marked = FALSE,
           style = NULL
         )
       ),
@@ -115,7 +115,7 @@ submit_ui <- function(id) {
             label = "",
             choices = c("Yes", "No"),
             choices_value = c("TRUE", "FALSE"),
-            selected = c("TRUE", "FALSE")
+            selected = "FALSE"
           ),
           div(
             style = style_top,
@@ -180,7 +180,7 @@ submit_server <- function(id, dataset) {
           label = "",
           choices = ser_list[[1]],
           choices_value = as.character(seq_along(ser_list[[1]])),
-          selected = as.character(seq_along(ser_list[[1]]))
+          selected = as.character(2:3)
         )
       )
     })
@@ -201,7 +201,7 @@ submit_server <- function(id, dataset) {
       )
     })
 
-    observeEvent(input$allNoneInput, {
+    observeEvent(input$allNoneInput, ignoreInit = T, {
       validate(
         need(
           try(input$region_input),
@@ -244,7 +244,9 @@ submit_server <- function(id, dataset) {
     })
 
     observeEvent(input$submit,
-      ignoreInit = T, {
+      ignoreInit = T,
+      {
+        rv$allow_sub <- F
 
         if (input$region_input == 1) {
           collection_name <- "colombia_big"
@@ -419,8 +421,8 @@ submit_server <- function(id, dataset) {
         }),
         lng = reactive({
           rv$lng
-        })
-
+        }),
+        allow_sub = reactive(rv$allow_sub)
       )
     )
   })

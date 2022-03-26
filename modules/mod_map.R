@@ -60,9 +60,8 @@ mod_map_server <- function(id, dataset_init, idx, vars_unifier) {
     ####################################
 
     observeEvent(vars_unifier$dataset(),
-      ignoreInit = T
-
-      , {
+      ignoreInit = T,
+      {
         output$map <- renderLeaflet({
           validate(
             need(

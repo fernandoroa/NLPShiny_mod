@@ -1,13 +1,18 @@
 basic_colombia <- function() {
-
   collection_name <- "colombia_big"
   database_name <- "kujakuja"
 
-  # if(!exists("db_col")) {
   db_col <- connectdb(collection_name, database_name)
-  # }
+
   center_init <- "Cundinamarca"
-  find_string <- paste0('{"state":"', center_init, '"}')
+  # find_string <- paste0('{"state":"', center_init, '"}')
+
+  find_string <- paste(
+    "{\"service_type\":{\"$in\" : [\"Healthcare\",\"Cash Transfer\"] },",
+    "\"state\":\"Cundinamarca\",",
+    "\"created_at_tz_posix\":{\"$gt\":{\"$date\":\"2016-01-01T00:00:00Z\"}, \"$lt\":{\"$date\":\"2022-03-26T23:59:59Z\"}},",
+    "\"satisfied\":false}"
+  )
 
   dataset <- read_data(
     db_col, find_string, 1500,
@@ -91,4 +96,3 @@ save_data <- function(data, collection_name, database_name) {
   })
   db$insert(data)
 }
-

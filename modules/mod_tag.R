@@ -38,17 +38,11 @@ tag_server <- function(id, vars_unifier) {
 
       shinyjs::disable("tag_button")
 
-      rv$alist$ds_copy <- NULL
+      dataset <- vars_unifier$dataset_whole()
 
-      rv$alist$dataset_cash_health <- NULL
-
-      dataset <- vars_unifier$dataset()
-
-      ###
       #
       #   initial datasets
       #
-      ###
 
       if (file.exists("outfiles/selection.csv")) {
         file.remove("outfiles/selection.csv")
@@ -59,7 +53,7 @@ tag_server <- function(id, vars_unifier) {
       #
       #   make dfs for tagging
       #
-
+      
       health_df <- as.data.frame(dataset[which(dataset$service_type == "Healthcare"), "idea"])
 
       cash_df <- as.data.frame(dataset[which(dataset$service_type == "Cash Transfer"), "idea"])
@@ -68,7 +62,12 @@ tag_server <- function(id, vars_unifier) {
         write.csv(cash_df, "outfiles/cash_df.csv", row.names = T)
         system("python3 py/load_model.py pkl/model_SVC.pkl pkl/tfidf_cash.pkl outfiles/cash_df.csv outfiles/cash_out.txt")
         cash_tags <- readLines("outfiles/cash_out.txt")
-        dataset$nlp_tag <- as.character(NA)
+        # dataset$nlp_tag <- as.character(NA)
+
+        if (!"nlp_tag" %in% colnames(dataset)) {
+          dataset$nlp_tag <- as.character(NA)
+        }
+
         dataset[which(dataset$service_type == "Cash Transfer"), ]$nlp_tag <- cash_tags
         rv$cash_cat <- unique(cash_tags)
         shinyjs::show("cash_select_UI_id", asis = T)
@@ -79,8 +78,6 @@ tag_server <- function(id, vars_unifier) {
         system("python3 py/load_model.py pkl/model_SVH.pkl pkl/tfidf_health.pkl outfiles/health_df.csv outfiles/health_out.txt")
         health_tags <- readLines("outfiles/health_out.txt")
 
-        #  avoid destroying column
-
         if (!"nlp_tag" %in% colnames(dataset)) {
           dataset$nlp_tag <- as.character(NA)
         }
@@ -90,13 +87,13 @@ tag_server <- function(id, vars_unifier) {
         shinyjs::show("health_select_UI_id", asis = T)
       }
 
-      rv$dataset <- dataset
-    }) # tagButton
+      rv$dataset_tag <- dataset
+    }) 
 
     return(
       list(
-        dataset = reactive({
-          rv$dataset
+        dataset_tag = reactive({
+          rv$dataset_tag
         }),
         cash_cat = reactive({
           rv$cash_cat

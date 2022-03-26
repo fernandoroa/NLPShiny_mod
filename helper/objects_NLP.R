@@ -140,5 +140,3 @@ i_type_na <- c("type1", "type2")
 long_type_names <- c("cash" = "Cash Transfer", "health" = "Healthcare")
 
 rv <- reactiveValues(height = 365)
-
-dataset_init <- basic_colombia()

@@ -31,18 +31,18 @@ table_server <- function(id, dataset_init, vars_unifier) {
     ######################
 
     make_table <- function(dataset_init, filtered_cols,
-                          loc_u, dontwrap_cols_filt,
-                          filtered_cols_sp, new_names) {
+                           loc_u, dontwrap_cols_filt,
+                           filtered_cols_sp, new_names) {
       DT::datatable(dataset_init[, filtered_cols],
         colnames = new_names,
         rownames = F,
         extensions = c("Scroller", "ColReorder"), # c('Responsive', 'ColReorder'),
         options = list(
           "pageLength" = 5,
-          dom = "ftipR"
-          , scrollX = TRUE,
-          scrollY = TRUE
-          , columnDefs = list(list(
+          dom = "ftipR",
+          scrollX = TRUE,
+          scrollY = TRUE,
+          columnDefs = list(list(
             targets = loc_u,
             render = JS("function(data, type, row, meta) {", "return type === 'display' && data.length > 15 ?", "'<span title=\"' + data + '\">' + data.substr(0, 8) + '...</span>' : data;", "}")
           ))
@@ -134,8 +134,8 @@ table_server <- function(id, dataset_init, vars_unifier) {
     })
 
     observeEvent(c(vars_unifier$dataset()),
-      ignoreInit = T
-      , {
+      ignoreInit = T,
+      {
         dataset <- vars_unifier$dataset()
 
         extant_cols <- colnames(dataset)
@@ -156,10 +156,13 @@ table_server <- function(id, dataset_init, vars_unifier) {
 
         first_cols_filt <- intersect(first_cols, extant_cols)
 
-        filtered_cols <- intersect(c(first_cols_filt,
-                                     setdiff(extant_cols, first_cols_filt)),
-                                   colnames(dataset)
-                                   )
+        filtered_cols <- intersect(
+          c(
+            first_cols_filt,
+            setdiff(extant_cols, first_cols_filt)
+          ),
+          colnames(dataset)
+        )
 
         if ("service_point_name" %in% filtered_cols) {
           filtered_cols_sp <- c(setdiff(filtered_cols, "service_point_name"), "Service Point")
@@ -190,7 +193,8 @@ table_server <- function(id, dataset_init, vars_unifier) {
           )
         }
 
-        output$mytable <- DT::renderDataTable({
+        output$mytable <- DT::renderDataTable(
+          {
             make_table(
               dataset, filtered_cols,
               loc_u, dontwrap_cols_filt,
