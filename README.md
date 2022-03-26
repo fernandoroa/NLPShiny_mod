@@ -1,12 +1,16 @@
 NLP repo. with modules - without rhino/box
 ================
 
+### App
+
+<https://nlp-kwwxur3qea-uc.a.run.app>
+
 ### Context
 
 This shiny repository is a modular version of the one developed by me in
 the ds4a (data science for all course) CorrelationOne project challenge.
-<https://gitlab.com/ferroao/nlpfeedback> ,
-<https://nlpapp-rwjey56xuq-uc.a.run.app>
+\[<https://gitlab.com/ferroao/nlpfeedback> ,
+<https://nlpapp-rwjey56xuq-uc.a.run.app>\]
 
 Credentials for mongodb are not available in this repository, following
 ds4a rules.
@@ -55,7 +59,7 @@ solutions for communities.
 -   translation for classifying Africa community feedback (english)
 -   video for Shiny Conference
 
-### Where is python here?
+### Where is python?
 
 -   See the `Dockerfile`
 -   See `requirements.txt`
