@@ -4,13 +4,15 @@ NLP repo. with modules - without rhino/box
 ### Context
 
 This shiny repository is a modular version of the one developed by me in
-the ds4a CorrelationOne project.
+the ds4a (data science for all course) CorrelationOne project challenge.
 <https://gitlab.com/ferroao/nlpfeedback> ,
 <https://nlpapp-rwjey56xuq-uc.a.run.app>
 
-Credentials are not available in this repository, following ds4a rules.
+Credentials for mongodb are not available in this repository, following
+ds4a rules.
 
-In that repository are the python notebook files, ‘written’ in group.
+In the gitlab repository are the python notebook files (models),
+‘written’ in group, not only by me.
 
 ### Objectives
 
@@ -22,15 +24,17 @@ In that repository are the python notebook files, ‘written’ in group.
 
 ### Business problem
 
-The shiny app is connected to a database of community feedback: This
-feedback is provided to NGOs through a third part.
+The shiny app is connected to a source database of community feedback.
+This feedback is provided continuously to NGOs (into the database of a
+third part - here as PoC only, not the real database)
 
-App PoC: The feedback should be constantly updated (form page), whenever
-needed tagged (tag module), based on a NLP model developed using a
-subset of tagged data (stored in .pkl files).
+App PoC: The feedback should be constantly updated (form page), filtered
+(mod. submit), whenever needed tagged (tag module), based on a NLP model
+developed using a subset of tagged data (stored in .pkl files).
 
-So, for the health and cash service types (models), text can be
-classified (mod. tag) and subset (mod. services).
+Finally, for the health and cash service types (models), text can be
+subset (mod. services). This way NGOs can attend and prioritize
+solutions for communities.
 
 ### What is ready ?
 
@@ -45,13 +49,16 @@ classified (mod. tag) and subset (mod. services).
 
 ### What is missing ?
 
--   rhino/box
+-   rhino/box (integrate with rhino repository)
 -   module form, for adding entries to mongodb in real time
 -   module wordcloud
--   integrate with rhino repository
--   translation for classifying Africa community feedback
+-   translation for classifying Africa community feedback (english)
+-   video for Shiny Conference
 
-### Recent developments
+### Where is python here?
 
-For the last two weeks, only 20% of time was dedicated to this, and box
-(rhino) is very different, so 2 days of rhino, which is little for me.
+-   See the `Dockerfile`
+-   See `requirements`
+-   See the `py` folder for scripts developed by me
+-   See the tag module in folder `modules` for the calls
+    `system("python3...`
