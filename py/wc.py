@@ -24,17 +24,10 @@ if language == "spanish":
     new_stop.extend(list2)
 else :
     stop_eng = stopwords.words('english')
-    #print(sorted(stop_spanish))
     keep=["no","not","without","nor","little","very","much","against","more"]
     new_stop = [stop_eng for stop_eng in stop_eng if stop_eng not in keep]
     
-#col_df = pd.read_csv('../datasets/1. Colombia_feedback_consolidado_raw.csv' ,dtype= {"idea":"object"})
-#cash_df = col_df[col_df.service_type == 'Cash Transfer'][['idea']].head(1000)
-#text = cash_df["idea"]
-
-
-# series = "mycash.csv"
-text = pd.read_csv(series, index_col = 0, squeeze = True, nrows=500)#header = None,
+text = pd.read_csv(series, index_col = 0, squeeze = True, nrows=500)
 
 big_list=[]
 for line in text:
@@ -71,5 +64,5 @@ wordCloud.generate_from_frequencies(words_dict)
 plt.title('Most frequently occurring bigrams connected by same colour and font size')
 plt.imshow(wordCloud, interpolation='bilinear')
 plt.axis("off")
-# plt.show()
+
 wordCloud.to_file(wordcloud_fig_file)
