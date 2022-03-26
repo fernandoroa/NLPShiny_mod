@@ -58,7 +58,12 @@ solutions for communities.
 ### Where is python here?
 
 -   See the `Dockerfile`
--   See `requirements`
+-   See `requirements.txt`
 -   See the `py` folder for scripts developed by me
--   See the tag module in folder `modules` for the calls
+-   See the `tag` module in folder `modules` for the calls
     `system("python3...`
+
+### Working app in cloudRun
+
+-   <https://nlp-kwwxur3qea-uc.a.run.app>
+-   For details look at `cloudRun.md`
