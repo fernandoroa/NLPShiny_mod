@@ -286,8 +286,10 @@ submit_server <- function(id, dataset) {
             ', "state":"', input$center_input, '"',
             paste0(
               ', "created_at_tz_posix":{"$gt":{"$date":"',
-              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
-              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_to), 'T23:59:59Z"}}'
+              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                  input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
+              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                  input$dateInput_to), 'T23:59:59Z"}}'
             ),
             ', "satisfied":', satis_str, "}"
           )
@@ -303,8 +305,10 @@ submit_server <- function(id, dataset) {
               '"state":"', input$center_input, '"',
               paste0(
                 ', "created_at_tz_posix":{"$gt":{"$date":"',
-                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
-                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_to), 'T23:59:59Z"}}'
+                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                    input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
+                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                    input$dateInput_to), 'T23:59:59Z"}}'
               ),
               ', "satisfied":', satis_str, "}"
             )
@@ -353,8 +357,10 @@ submit_server <- function(id, dataset) {
             ', "location_name":"', input$center_input_2, '"',
             paste0(
               ', "created_at_tz_posix":{"$gt":{"$date":"',
-              input$dateInput_from, 'T00:00:00Z"}, "$lt":{"$date":"',
-              input$dateInput_to, 'T23:59:59Z"} } '
+              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                  input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
+              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                  input$dateInput_to), 'T23:59:59Z"}}'
             ),
             ', "satisfied":', satis_str, "}"
           )
@@ -371,8 +377,10 @@ submit_server <- function(id, dataset) {
               ', "location_name":"', input$center_input_2, '"',
               paste0(
                 ', "created_at_tz_posix":{"$gt":{"$date":"',
-                input$dateInput_from, 'T00:00:00Z"}, "$lt":{"$date":"',
-                input$dateInput_to, 'T23:59:59Z"} } '
+                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                    input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
+                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
+                    input$dateInput_to), 'T23:59:59Z"}}'
               ),
               ', "satisfied":', satis_str, "}"
             )
