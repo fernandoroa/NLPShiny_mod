@@ -54,7 +54,9 @@ solutions for communities.
 
 ### What is missing ?
 
--   rhino/box (integrate with rhino repository)
+-   Third page with workflow and context (How to)
+-   rhino/box (integrate with rhino repository) \[not mandatory
+    (Marek)\]
 -   module wordcloud
 -   translation for classifying Africa community feedback (english)
 -   video for Shiny Conference
