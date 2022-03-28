@@ -295,3 +295,7 @@ element.style {
   margin: 6px 0px 6px 10px;
   border-left: 1px solid darkgray;
 }
+
+.ui.form .inline.field>label {
+  width: 120px;
+}

@@ -32,7 +32,7 @@ source("modules/mod_table.R")
 source("modules/mod_unify.R")
 source("modules/mod_tag.R")
 source("modules/mod_services.R")
-source("modules/modules.R")
+source("modules/mod_form.R")
 
 source("layout/headers_footer.R")
 source("layout/pages.R")
@@ -81,13 +81,13 @@ server <- function(input, output, session) {
   # tag
   #
 
-  vars_tag    <- tag_server("mod_tag", vars_unifier)
+  vars_tag <- tag_server("mod_tag", vars_unifier)
 
   #
   #   services
   #
 
-  vars_cash   <- servicetype_server("cash", vars_unifier, vars_submit)
+  vars_cash <- servicetype_server("cash", vars_unifier, vars_submit)
 
   vars_health <- servicetype_server("health", vars_unifier, vars_submit)
 
@@ -113,6 +113,12 @@ server <- function(input, output, session) {
   #
 
   table_server("mod_table", dataset_init, vars_unifier)
+
+  #
+  # form
+  #
+
+  form_server("mod_form", vars_unifier)
 
   observeEvent(input$button, {
     shinyjs::toggle("sidebar_id")

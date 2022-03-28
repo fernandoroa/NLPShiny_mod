@@ -50,11 +50,11 @@ solutions for communities.
 -   The module map, upper right
 -   The module unify, which integrates inputs of submit, tag and
     services for the map and table outputs
+-   module form, for adding entries to mongodb in real time
 
 ### What is missing ?
 
 -   rhino/box (integrate with rhino repository)
--   module form, for adding entries to mongodb in real time
 -   module wordcloud
 -   translation for classifying Africa community feedback (english)
 -   video for Shiny Conference

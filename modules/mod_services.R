@@ -69,8 +69,12 @@ servicetype_server <- function(id, vars_unifier, vars_submit) {
       )
 
       observeEvent(input[[paste0(id, "_subset_button")]], ignoreInit = T, {
-        rv$alist$dataset_cash_health <- rv$alist$ds_copy[which(rv$alist$ds_copy$nlp_tag %in%
-          input[[paste0(id, "_input")]]), ]
+        rv$alist$dataset_cash_health <- rv$alist$ds_copy[which(
+          rv$alist$ds_copy$nlp_tag %in%
+            input[[paste0(id, "_input")]] &
+            rv$alist$ds_copy$service_type %in%
+              long_type_names[id]
+        ), ]
 
         if (file.exists("outfiles/selection.csv")) {
           file.remove("outfiles/selection.csv")

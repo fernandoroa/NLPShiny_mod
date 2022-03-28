@@ -85,7 +85,7 @@ names(dec_color_list12) <- ser_list[[2]]
 dontwrap_cols <- c(
   "feedback", "date", "nlp_tag", "location", "created_at_tz", "location_name",
   "city"
-  # ,"service_point_name"
+  # , "service_point_name"
   , "Service Point"
 )
 
@@ -104,7 +104,7 @@ unwanted_columns <- c(
 first_cols <- c(
   "nlp_tag", "feedback", "date", "satisfied", "service_type",
   "service_point_name"
-  # ,"Service Point"
+  # , "Service Point"
 )
 
 columns_col <- c(

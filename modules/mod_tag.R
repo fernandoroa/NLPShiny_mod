@@ -17,8 +17,9 @@ tag_ui <- function(id) {
       actionButton(ns("tag_button"), "NLP in action, tag the feedback!", icon("tag"),
         style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"
       ),
-      div(style="text-align:center;color:#A8A8A8;",
-          helpText("add tag column to table")
+      div(
+        style = "text-align:center;color:#A8A8A8;",
+        helpText("add tag column to table")
       )
     )
   )
@@ -56,7 +57,7 @@ tag_server <- function(id, vars_unifier) {
       #
       #   make dfs for tagging
       #
-      
+
       health_df <- as.data.frame(dataset[which(dataset$service_type == "Healthcare"), "feedback"])
 
       cash_df <- as.data.frame(dataset[which(dataset$service_type == "Cash Transfer"), "feedback"])
@@ -91,7 +92,7 @@ tag_server <- function(id, vars_unifier) {
       }
 
       rv$dataset_tag <- dataset
-    }) 
+    })
 
     return(
       list(

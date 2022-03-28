@@ -113,3 +113,16 @@ build_map <- function(dataset_init, lng1, lat1, js_functions2, pal) {
   )
   themap
 }
+
+render_field_text_in<- function(ns, label1, input1, value, width) {
+
+field(class="inline field",
+  tags$label(label1),
+  text_input(ns(input1),
+             value = value,
+             type = "text",
+             attribs=list(style=paste0("width:", width, "px;"))
+  )
+)
+
+}

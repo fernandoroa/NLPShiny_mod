@@ -12,143 +12,144 @@
 submit_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    div(style="text-align:center;",
+    div(
+      style = "text-align:center;",
       h3("Options to filter feedback database")
     ),
-  split_layout(
-    style = "background:#FFFFFF;height:93%",
-    cell_widths = c("30%", "5%", "30%", "5%", "30%"),
-    tagList(
-      div(
-        style = style_top,
-        selectInput(ns("region_input"), "Region", c("Colombia" = 1, "Africa" = 2))
-      ),
-      div(
-        conditionalPanel(
-          condition = "input.region_input == 2",
-          ns = ns,
-          uiOutput(ns("africa_country_select"))
-        )
-      ),
-      div(
-        conditionalPanel(
-          condition = "input.region_input == 1",
-          ns = ns,
-          uiOutput(ns("center_select"))
-        )
-      ),
-      div(
-        conditionalPanel(
-          condition = "input.region_input == 2",
-          ns = ns,
-          uiOutput(ns("center_select2"))
-        )
-      ),
-      div(
-        style = style_top,
-        strong("Date interval")
-      ),
-      div(
-        class = "calendar1",
-        tagList(
-          tags$div(
-            style = "max-width:200px;", tags$div(strong("From")),
-            DatePicker.shinyInput(ns("dateInput_from"),
-              formatDate = format_date,
-              value = "2016-01-01"
-            )
-          ),
-          HTML("&nbsp&nbsp&nbsp&nbsp"),
-          tags$div(
-            style = "max-width:200px;", tags$div(strong("To")),
-            DatePicker.shinyInput(ns("dateInput_to"),
-              formatDate = format_date,
-              value = Sys.Date()
+    split_layout(
+      style = "background:#FFFFFF;height:93%",
+      cell_widths = c("30%", "5%", "30%", "5%", "30%"),
+      tagList(
+        div(
+          style = style_top,
+          selectInput(ns("region_input"), "Region", c("Colombia" = 1, "Africa" = 2))
+        ),
+        div(
+          conditionalPanel(
+            condition = "input.region_input == 2",
+            ns = ns,
+            uiOutput(ns("africa_country_select"))
+          )
+        ),
+        div(
+          conditionalPanel(
+            condition = "input.region_input == 1",
+            ns = ns,
+            uiOutput(ns("center_select"))
+          )
+        ),
+        div(
+          conditionalPanel(
+            condition = "input.region_input == 2",
+            ns = ns,
+            uiOutput(ns("center_select2"))
+          )
+        ),
+        div(
+          style = style_top,
+          strong("Date interval")
+        ),
+        div(
+          class = "calendar1",
+          tagList(
+            tags$div(
+              style = "max-width:200px;", tags$div(strong("From")),
+              DatePicker.shinyInput(ns("dateInput_from"),
+                formatDate = format_date,
+                value = "2016-01-01T12:00:00.000Z"
+              )
+            ),
+            HTML("&nbsp&nbsp&nbsp&nbsp"),
+            tags$div(
+              style = "max-width:200px;", tags$div(strong("To")),
+              DatePicker.shinyInput(ns("dateInput_to"),
+                formatDate = format_date,
+                value = format(Sys.time(), "%Y-%m-%dT12:00:00.000Z")
+              )
             )
           )
         )
-      )
-
-    ),
-    br(),
-    tagList(
-      div(
-        style = style_top_bottom,
-        strong("Service type")
       ),
-      div(
-        style = style_bottom,
-        shiny.semantic::checkbox_input(
-          input_id = ns("allNoneInput"),
-          label = "All/None",
-          is_marked = FALSE,
-          style = NULL
-        )
-      ),
-      div(
-        conditionalPanel(
-          condition = "input.region_input == 1",
-          ns = ns,
-          uiOutput(ns("servicetype_ui1"))
-        )
-      ),
-      div(
-        conditionalPanel(
-          condition = "input.region_input == 2",
-          ns = ns,
-          uiOutput(ns("servicetype_ui2"))
-        )
-      )
-    ),
-    br(),
-    div(
-      class = "third-column",
+      br(),
       tagList(
         div(
-          class = "third-container",
+          style = style_top_bottom,
+          strong("Service type")
+        ),
+        div(
+          style = style_bottom,
+          shiny.semantic::checkbox_input(
+            input_id = ns("allNoneInput"),
+            label = "All/None",
+            is_marked = FALSE,
+            style = NULL
+          )
+        ),
+        div(
+          conditionalPanel(
+            condition = "input.region_input == 1",
+            ns = ns,
+            uiOutput(ns("servicetype_ui1"))
+          )
+        ),
+        div(
+          conditionalPanel(
+            condition = "input.region_input == 2",
+            ns = ns,
+            uiOutput(ns("servicetype_ui2"))
+          )
+        )
+      ),
+      br(),
+      div(
+        class = "third-column",
+        tagList(
           div(
-            style = style_top_bottom,
-            strong("Satified")
-          ),
-          multiple_checkbox(
-            input_id = ns("satisfiedInput"),
-            label = "",
-            choices = c("Yes", "No"),
-            choices_value = c("TRUE", "FALSE"),
-            selected = "FALSE"
-          ),
-          div(
-            style = style_top,
-            strong("Sort")
-          ),
-          ChoiceGroup.shinyInput(ns("old_new_input"),
-            value = -1,
-            options = list(
-              list(key = -1, text = "newest"),
-              list(key = 1, text = "oldest")
-            )
-          ),
-          div(
-            style = paste(style_top,"width:100px;"),
-            numericInput(ns("max_input"), 
-                         "Entries to load", 
-                         1500, 
-                         min = 1000, max = 250000)
-          ),
-          div(
-            style = "position:absolute; bottom:15px;",
-            actionButton(ns("submit"),
-              "1. Show Selected Community Feedback", icon("map"),
-              style = "color: #fff;
+            class = "third-container",
+            div(
+              style = style_top_bottom,
+              strong("Satified")
+            ),
+            multiple_checkbox(
+              input_id = ns("satisfiedInput"),
+              label = "",
+              choices = c("Yes", "No"),
+              choices_value = c("TRUE", "FALSE"),
+              selected = "FALSE"
+            ),
+            div(
+              style = style_top,
+              strong("Sort")
+            ),
+            ChoiceGroup.shinyInput(ns("old_new_input"),
+              value = -1,
+              options = list(
+                list(key = -1, text = "newest"),
+                list(key = 1, text = "oldest")
+              )
+            ),
+            div(
+              style = paste(style_top, "width:100px;"),
+              numericInput(ns("max_input"),
+                "Entries to load",
+                1500,
+                min = 1000, max = 250000
+              )
+            ),
+            div(
+              style = "position:absolute; bottom:15px;",
+              actionButton(ns("submit"),
+                "1. Show Selected Community Feedback", icon("map"),
+                style = "color: #fff;
                      background-color: #337ab7;
                      border-color: #2e6da4;
                      border-radius:10px;"
+              )
             )
           )
         )
       )
     )
-  )
   )
 }
 
@@ -285,8 +286,8 @@ submit_server <- function(id, dataset) {
             ', "state":"', input$center_input, '"',
             paste0(
               ', "created_at_tz_posix":{"$gt":{"$date":"',
-              input$dateInput_from, 'T00:00:00Z"}, "$lt":{"$date":"',
-              input$dateInput_to, 'T23:59:59Z"}}'
+              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
+              sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_to), 'T23:59:59Z"}}'
             ),
             ', "satisfied":', satis_str, "}"
           )
@@ -302,8 +303,8 @@ submit_server <- function(id, dataset) {
               '"state":"', input$center_input, '"',
               paste0(
                 ', "created_at_tz_posix":{"$gt":{"$date":"',
-                input$dateInput_from, 'T00:00:00Z"}, "$lt":{"$date":"',
-                input$dateInput_to, 'T23:59:59Z"}}'
+                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
+                sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", input$dateInput_to), 'T23:59:59Z"}}'
               ),
               ', "satisfied":', satis_str, "}"
             )
@@ -391,12 +392,8 @@ submit_server <- function(id, dataset) {
           rv$lng <- afr_locations_coord[which(afr_locations_coord$location_name %in% input$center_input_2), ]$lng
         }
         ##
-        rv$dataset <- select_columns(rv$dataset,unwanted_columns)
-        
-        # filter_cols <- setdiff(colnames(rv$dataset), unwanted_columns)
-        # no_idea <- setdiff(filter_cols, "idea")
-        # rv$dataset <- rv$dataset[, c("idea", no_idea)]
-        ###
+        rv$dataset <- select_columns(rv$dataset, unwanted_columns)
+
         if (file.exists("outfiles/selection.csv")) {
           file.remove("outfiles/selection.csv")
         }
@@ -407,9 +404,12 @@ submit_server <- function(id, dataset) {
           rv$height <- 390
         }
 
-        write.csv(tolower(dataset[, "feedback"]), "outfiles/selection.csv", row.names = T)
+        write.csv(tolower(rv$dataset[, "feedback"]),
+          "outfiles/selection.csv",
+          row.names = T
+        )
       }
-    ) 
+    )
 
     return(
       list(
