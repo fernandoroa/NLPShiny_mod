@@ -18,7 +18,7 @@ command_bar <- CommandBar(
   style = list(width = "100%")
 )
 
-title <- div(Text(variant = "xLarge", "Community feedback tagging with NLP"),
+title <- div(Text(variant = "xLarge", "Community feedback tagging using NLP"),
   class = "title",
   style = "align: center; white-space:nowrap;"
 )

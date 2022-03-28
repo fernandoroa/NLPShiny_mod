@@ -83,7 +83,7 @@ names(dec_color_list12) <- ser_list[[2]]
 ####################################
 
 dontwrap_cols <- c(
-  "idea", "date", "nlp_tag", "location", "created_at_tz", "location_name",
+  "feedback", "date", "nlp_tag", "location", "created_at_tz", "location_name",
   "city"
   # ,"service_point_name"
   , "Service Point"
@@ -102,14 +102,10 @@ unwanted_columns <- c(
 )
 
 first_cols <- c(
-  "nlp_tag", "idea", "date", "satisfied", "service_type",
+  "nlp_tag", "feedback", "date", "satisfied", "service_type",
   "service_point_name"
   # ,"Service Point"
 )
-
-# remove idea, its presence is mandatory, service_type, lat, lng
-
-mandatory <- c("idea", "service_type", "service_point_name", "unique_id", "lat", "lng")
 
 columns_col <- c(
   "date", "country_name", "satisfied", "response_type",
@@ -129,9 +125,9 @@ columns_afr <- c(
 columns_afr <- sort(columns_afr)
 
 
-style_top <- "padding-top:10px"
+style_top <- "padding-top:10px;"
 style_bottom <- "padding-bottom:0.5em;"
-style_top_bottom <- "padding-top:10px;padding-bottom:5px"
+style_top_bottom <- "padding-top:10px;padding-bottom:5px;"
 
 style_calendar <- "margin-top:10px;max-width:150px;"
 

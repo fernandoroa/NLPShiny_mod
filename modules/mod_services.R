@@ -78,7 +78,7 @@ servicetype_server <- function(id, vars_unifier, vars_submit) {
 
         rv$dataset_subset <- rv$alist$dataset_cash_health
 
-        write.csv(tolower(rv$dataset[, "idea"]), "outfiles/selection.csv", row.names = T)
+        write.csv(tolower(rv$dataset[, "feedback"]), "outfiles/selection.csv", row.names = T)
       })
     })
 

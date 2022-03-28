@@ -66,7 +66,7 @@ main_page <- tagList(
           tabs =
             list(
               list(
-                menu = "Table",
+                menu = "Feedback and metadata",
                 content =
                   tagList(
                     div(

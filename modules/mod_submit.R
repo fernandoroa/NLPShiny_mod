@@ -11,8 +11,12 @@
 
 submit_ui <- function(id) {
   ns <- NS(id)
+  tagList(
+    div(style="text-align:center;",
+      h3("Options to filter feedback database")
+    ),
   split_layout(
-    style = "background:#FFFFFF;",
+    style = "background:#FFFFFF;height:93%",
     cell_widths = c("30%", "5%", "30%", "5%", "30%"),
     tagList(
       div(
@@ -63,11 +67,8 @@ submit_ui <- function(id) {
             )
           )
         )
-      ),
-      div(
-        style = style_top,
-        numericInput(ns("max_input"), "Entries to load", 1500, min = 1000, max = 250000)
       )
+
     ),
     br(),
     tagList(
@@ -90,7 +91,6 @@ submit_ui <- function(id) {
           ns = ns,
           uiOutput(ns("servicetype_ui1"))
         )
-        # , uiOutput("africa_country_select")
       ),
       div(
         conditionalPanel(
@@ -108,7 +108,7 @@ submit_ui <- function(id) {
           class = "third-container",
           div(
             style = style_top_bottom,
-            strong("Satified:")
+            strong("Satified")
           ),
           multiple_checkbox(
             input_id = ns("satisfiedInput"),
@@ -119,7 +119,7 @@ submit_ui <- function(id) {
           ),
           div(
             style = style_top,
-            strong("Sort:")
+            strong("Sort")
           ),
           ChoiceGroup.shinyInput(ns("old_new_input"),
             value = -1,
@@ -127,6 +127,13 @@ submit_ui <- function(id) {
               list(key = -1, text = "newest"),
               list(key = 1, text = "oldest")
             )
+          ),
+          div(
+            style = paste(style_top,"width:100px;"),
+            numericInput(ns("max_input"), 
+                         "Entries to load", 
+                         1500, 
+                         min = 1000, max = 250000)
           ),
           div(
             style = "position:absolute; bottom:15px;",
@@ -141,6 +148,7 @@ submit_ui <- function(id) {
         )
       )
     )
+  )
   )
 }
 
@@ -383,13 +391,11 @@ submit_server <- function(id, dataset) {
           rv$lng <- afr_locations_coord[which(afr_locations_coord$location_name %in% input$center_input_2), ]$lng
         }
         ##
-        filter_cols <- setdiff(colnames(rv$dataset), unwanted_columns)
-
-        no_idea <- setdiff(filter_cols, "idea")
-
-        rv$dataset <- rv$dataset[, c("idea", no_idea)]
-
-
+        rv$dataset <- select_columns(rv$dataset,unwanted_columns)
+        
+        # filter_cols <- setdiff(colnames(rv$dataset), unwanted_columns)
+        # no_idea <- setdiff(filter_cols, "idea")
+        # rv$dataset <- rv$dataset[, c("idea", no_idea)]
         ###
         if (file.exists("outfiles/selection.csv")) {
           file.remove("outfiles/selection.csv")
@@ -401,9 +407,9 @@ submit_server <- function(id, dataset) {
           rv$height <- 390
         }
 
-        write.csv(tolower(dataset[, "idea"]), "outfiles/selection.csv", row.names = T)
+        write.csv(tolower(dataset[, "feedback"]), "outfiles/selection.csv", row.names = T)
       }
-    ) # observeEvent submit
+    ) 
 
     return(
       list(

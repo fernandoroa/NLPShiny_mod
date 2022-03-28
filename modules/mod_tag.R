@@ -13,9 +13,12 @@ tag_ui <- function(id) {
   ns <- NS(id)
   tagList(
     div(
-      style = "padding:25px 0px 0 0", class = "tag-container",
+      style = "padding:25px 0 0 0;max-width:266px;", class = "tag-container",
       actionButton(ns("tag_button"), "NLP in action, tag the feedback!", icon("tag"),
         style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"
+      ),
+      div(style="text-align:center;color:#A8A8A8;",
+          helpText("add tag column to table")
       )
     )
   )
@@ -48,15 +51,15 @@ tag_server <- function(id, vars_unifier) {
         file.remove("outfiles/selection.csv")
       }
 
-      write.csv(tolower(dataset[, "idea"]), "outfiles/selection.csv", row.names = T)
+      write.csv(tolower(dataset[, "feedback"]), "outfiles/selection.csv", row.names = T)
 
       #
       #   make dfs for tagging
       #
       
-      health_df <- as.data.frame(dataset[which(dataset$service_type == "Healthcare"), "idea"])
+      health_df <- as.data.frame(dataset[which(dataset$service_type == "Healthcare"), "feedback"])
 
-      cash_df <- as.data.frame(dataset[which(dataset$service_type == "Cash Transfer"), "idea"])
+      cash_df <- as.data.frame(dataset[which(dataset$service_type == "Cash Transfer"), "feedback"])
 
       if (nrow(cash_df) > 0) {
         write.csv(cash_df, "outfiles/cash_df.csv", row.names = T)

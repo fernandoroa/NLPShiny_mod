@@ -9,19 +9,19 @@ sidebar_style <- list(
 
 list_link_pages <- list(list(links = list(
   list(
-    name = "Main",
+    name = "Tag feedback",
     url = "#!/",
     key = "home",
     isExpanded = FALSE
   ),
   list(
-    name = "InputForm",
+    name = "Database",
     url = paste0("#!/", "inputform"),
     key = "input_form",
     isExpanded = FALSE
   ),
   list(
-    name = "About",
+    name = "How to",
     url = paste0("#!/", "about"),
     key = "about",
     isExpanded = FALSE

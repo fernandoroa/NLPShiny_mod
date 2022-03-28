@@ -1,3 +1,16 @@
+select_columns <- function(dataset, unwanted_columns) {
+  
+  filter_cols <- setdiff(colnames(dataset), unwanted_columns)
+  
+  no_idea <- setdiff(filter_cols, "idea")
+  
+  colnames(dataset)[which(names(dataset)=="idea")]<-"feedback"
+  
+  dataset <- dataset[, c("feedback", no_idea)]
+  
+  return(dataset)  
+}
+
 basic_colombia <- function() {
   collection_name <- "colombia_big"
   database_name <- "kujakuja"
@@ -20,12 +33,9 @@ basic_colombia <- function() {
   )
 
   dataset <- colombia_coord_date(dataset)
+  
+  dataset <- select_columns(dataset,unwanted_columns)
 
-  filter_cols <- setdiff(colnames(dataset), unwanted_columns)
-
-  no_idea <- setdiff(filter_cols, "idea")
-
-  dataset <- dataset[, c("idea", no_idea)]
 }
 
 basic_africa <- function() {
@@ -45,6 +55,9 @@ basic_africa <- function() {
     paste0('{\"$natural\":', input$old_new_input, "}")
   )
   dataset <- africa_coord_date(dataset)
+  
+  dataset <- select_columns(dataset,unwanted_columns)
+  
 }
 
 connectdb <- function(collection_name, database_name) {
