@@ -40,6 +40,24 @@ Finally, for the health and cash service types (models), text can be
 subset (mod. services). This way NGOs can attend and prioritize
 solutions for communities.
 
+### Python which model is used and how?
+
+The python model is precomputed, saved in .pkl files, see folder `pkl`,
+and loaded by python scripts in folder `py`, from a call in the R module
+`tag`.
+
+Where is python?
+
+-   `Dockerfile` file
+-   `requirements.txt` file
+-   `py` folder for scripts developed by me
+-   models are saved in `.pkl` files (`pkl` folder)
+-   The pertinent python notebook developed in group is on the gitlab
+    repository, see above
+-   In the notebook, the accepted model is SVC
+-   See the `tag` module in folder `modules` for the calls
+    `system("python3...`
+
 ### What is ready ?
 
 -   The module of the selectors, upper left, called submit
@@ -55,19 +73,10 @@ solutions for communities.
 ### What is missing ?
 
 -   Third page with workflow and context (How to)
--   rhino/box (integrate with rhino repository) \[not mandatory
-    (Marek)\]
+-   rhino/box (integrate with rhino repository) \[optional (Marek)\]
 -   module wordcloud
 -   translation for classifying Africa community feedback (english)
 -   video for Shiny Conference
-
-### Where is python?
-
--   See the `Dockerfile`
--   See `requirements.txt`
--   See the `py` folder for scripts developed by me
--   See the `tag` module in folder `modules` for the calls
-    `system("python3...`
 
 ### Working app in cloudRun
 
