@@ -40,21 +40,21 @@ Finally, for the health and cash service types (models), text can be
 subset (mod. services). This way NGOs can attend and prioritize
 solutions for communities.
 
-### Python which model is used and how?
+### Python
+
+##### Which model is used and how?
 
 The python model is precomputed, saved in .pkl files, see folder `pkl`,
 and loaded by python scripts in folder `py`, from a call in the R module
-`tag`.
+`tag`. The pertinent python notebook developed in group is on the gitlab
+repository, see above. In the notebook, the accepted model is SVC
 
-Where is python?
+##### Where is python?
 
 -   `Dockerfile` file
 -   `requirements.txt` file
 -   `py` folder for scripts developed by me
 -   models are saved in `.pkl` files (`pkl` folder)
--   The pertinent python notebook developed in group is on the gitlab
-    repository, see above
--   In the notebook, the accepted model is SVC
 -   See the `tag` module in folder `modules` for the calls
     `system("python3...`
 
@@ -69,10 +69,10 @@ Where is python?
 -   The module unify, which integrates inputs of submit, tag and
     services for the map and table outputs
 -   module form, for adding entries to mongodb in real time
+-   Third page with workflow (How to)
 
 ### What is missing ?
 
--   Third page with workflow and context (How to)
 -   rhino/box (integrate with rhino repository) \[optional (Marek)\]
 -   module wordcloud
 -   translation for classifying Africa community feedback (english)

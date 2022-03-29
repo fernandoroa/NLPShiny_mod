@@ -60,13 +60,12 @@ tag_server <- function(id, vars_unifier) {
 
       health_df <- as.data.frame(dataset[which(dataset$service_type == "Healthcare"), "feedback"])
 
-      cash_df <- as.data.frame(dataset[which(dataset$service_type == "Cash Transfer"), "feedback"])
+      cash_df   <- as.data.frame(dataset[which(dataset$service_type == "Cash Transfer"), "feedback"])
 
       if (nrow(cash_df) > 0) {
         write.csv(cash_df, "outfiles/cash_df.csv", row.names = T)
         system("python3 py/load_model.py pkl/model_SVC.pkl pkl/tfidf_cash.pkl outfiles/cash_df.csv outfiles/cash_out.txt")
         cash_tags <- readLines("outfiles/cash_out.txt")
-        # dataset$nlp_tag <- as.character(NA)
 
         if (!"nlp_tag" %in% colnames(dataset)) {
           dataset$nlp_tag <- as.character(NA)
@@ -74,7 +73,7 @@ tag_server <- function(id, vars_unifier) {
 
         dataset[which(dataset$service_type == "Cash Transfer"), ]$nlp_tag <- cash_tags
         rv$cash_cat <- unique(cash_tags)
-        shinyjs::show("cash_select_UI_id", asis = T)
+        shinyjs::enable("cash_select_UI_id", asis = T)
       }
 
       if (nrow(health_df) > 0) {
@@ -88,7 +87,7 @@ tag_server <- function(id, vars_unifier) {
 
         dataset[which(dataset$service_type == "Healthcare"), ]$nlp_tag <- health_tags
         rv$health_cat <- unique(health_tags)
-        shinyjs::show("health_select_UI_id", asis = T)
+        shinyjs::enable("health_select_UI_id", asis = T)
       }
 
       rv$dataset_tag <- dataset

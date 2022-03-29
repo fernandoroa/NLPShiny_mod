@@ -24,10 +24,14 @@ form_server <- function(id, vars_unifier) {
 
     output$input1Box <- renderUI({
       div(
-        style = "width:500px;padding:10px;",
+        style = "width:500px;",
         segment(
           form(
-            h4("Add an entry to the database"),
+            div(
+              style = "text-align:center;",
+              h3("Add an entry to the database")
+            ),
+            br(),
             render_field_text_in(ns, "Country", "country_name", "Colombia", 300),
             render_field_text_in(ns, "Service", "service_type", "Healthcare", 300),
             render_field_text_in(ns, "Response type", "response_type", "Survey", 300),
@@ -56,7 +60,7 @@ form_server <- function(id, vars_unifier) {
 
     output$input2Box <- renderUI({
       div(
-        style = "width:500px;padding:10px;",
+        style = "width:500px;",
         segment(
           splitLayout(
             style = "background:#FFFFFF;",

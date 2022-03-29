@@ -33,6 +33,7 @@ source("modules/mod_unify.R")
 source("modules/mod_tag.R")
 source("modules/mod_services.R")
 source("modules/mod_form.R")
+source("modules/mod_plot.R")
 
 source("layout/headers_footer.R")
 source("layout/pages.R")
@@ -70,6 +71,8 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   router$server(input, output, session)
+  
+  mod_plot_server("minimap")
 
   #
   #   inputs
@@ -86,7 +89,7 @@ server <- function(input, output, session) {
   #
   #   services
   #
-
+  
   vars_cash <- servicetype_server("cash", vars_unifier, vars_submit)
 
   vars_health <- servicetype_server("health", vars_unifier, vars_submit)

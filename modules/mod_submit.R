@@ -328,9 +328,9 @@ submit_server <- function(id, dataset) {
           rv$lat <- col_states_coord[which(col_states_coord$state %in% input$center_input), ]$lat
 
           rv$lng <- col_states_coord[which(col_states_coord$state %in% input$center_input), ]$lng
+          
         } else {
 
-          ##
           collection_name <- "africa_big"
           database_name <- "kujakuja"
 
@@ -372,17 +372,23 @@ submit_server <- function(id, dataset) {
 
           if (nrow(dataset) == 0) {
             find_string <- paste0(
-              "{",
+              '{',
               '"country_name":"', input$africa_country_input, '"',
-              ', "location_name":"', input$center_input_2, '"',
+              ',',
+              '"location_name":"',input$center_input_2, '"',
+              ',',
               paste0(
-                ', "created_at_tz_posix":{"$gt":{"$date":"',
+                '"created_at_tz_posix":{"$gt":{"$date":"',
                 sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
-                    input$dateInput_from), 'T00:00:00Z"}, "$lt":{"$date":"',
+                    input$dateInput_from), 'T00:00:00Z"},',
+                    '"$lt":{"$date":"',
                 sub("([0-9]{4}-[0-9]{2}-[0-9]{2}).*", "\\1", 
-                    input$dateInput_to), 'T23:59:59Z"}}'
+                    input$dateInput_to), 'T23:59:59Z"}',
+                    '}'
               ),
-              ', "satisfied":', satis_str, "}"
+              ',',
+              '"satisfied":', satis_str, 
+              '}'
             )
 
             # row number max.

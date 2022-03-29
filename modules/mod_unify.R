@@ -36,8 +36,8 @@ unifier_server <- function(id, dataset_init, vars_submit,
       values[["dataset_not_subset"]] <- NULL
       values[["allow_sub"]] <- vars_submit$allow_sub()
 
-      shinyjs::hide("cash_select_UI_id", asis = T)
-      shinyjs::hide("health_select_UI_id", asis = T)
+      shinyjs::disable("cash_select_UI_id", asis = T)
+      shinyjs::disable("health_select_UI_id", asis = T)
       shinyjs::enable("mod_tag-tag_button", asis = T)
     }) %>% bindEvent(vars_submit$submit(), ignoreInit = T)
 
@@ -50,11 +50,11 @@ unifier_server <- function(id, dataset_init, vars_submit,
 
     observe({
       values[["dataset"]] <- vars_cash$dataset_subset()
-    }) %>% bindEvent(vars_cash$click_count(), ignoreInit = T)
+    }) %>% bindEvent(vars_cash$dataset_subset(), ignoreInit = T)
 
     observe({
       values[["dataset"]] <- vars_health$dataset_subset()
-    }) %>% bindEvent(vars_health$click_count(), ignoreInit = T)
+    }) %>% bindEvent(vars_health$dataset_subset(), ignoreInit = T)
 
     return(
       list(

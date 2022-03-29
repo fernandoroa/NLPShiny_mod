@@ -3,10 +3,10 @@ logo <- img(src = "appsilon-logo.png", class = "logo")
 far_items <- list(
   list(
     key = "info",
-    text = "Repo",
+    text = "About",
     ariaLabel = "Info",
     iconOnly = F,
-    href = "https://github.com/Appsilon/possible_example",
+    href = "https://github.com/fernandoroa/NLPShiny_mod/",
     iconProps = list(
       iconName = "Info"
     )
@@ -14,8 +14,8 @@ far_items <- list(
 )
 
 command_bar <- CommandBar(
-  far_items = far_items,
-  style = list(width = "100%")
+  farItems = far_items,
+  style = list(width = "80%")
 )
 
 title <- div(Text(variant = "xLarge", "Community feedback tagging using NLP"),
@@ -24,15 +24,22 @@ title <- div(Text(variant = "xLarge", "Community feedback tagging using NLP"),
 )
 
 header_right <- tagList(
-  IconButton.shinyInput("button", iconProps = list("iconName" = "CollapseMenu")),
   title, command_bar
 )
 
-header_left <- tagList(logo)
+header_left <- tagList(logo,
+                       div(style="margin-left:auto;",
+                       IconButton.shinyInput("button", 
+                                             iconProps = 
+                                               list("iconName" = "CollapseMenu")
+                       )
+                       )
+                       )
 
 footer <- Stack(
   horizontal = T,
   tokens = list(childrenGap = 150),
   Text(variant = "large", "Built with ❤ by Appsilon", block = TRUE),
-  Text(variant = "medium", nowrap = FALSE, "If you'd like to learn more, react out to us at hello@appsilon.com")
+  Text(variant = "medium", nowrap = FALSE, 
+       "If you'd like to learn more, react out to us at hello@appsilon.com")
 )

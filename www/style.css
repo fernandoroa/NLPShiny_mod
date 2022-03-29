@@ -30,6 +30,34 @@ body {
   grid-template-areas: "header_left header_right" "sidenav main" "footer footer";
   height: 100vh;
 }
+.grid-mini-2 {
+  display: grid;
+  grid-template-columns: 320px;
+  grid-template-rows: 24vh 24vh;
+  grid-template-areas: "seg5" "seg6";
+  height: 48vh;
+  padding: 0;
+  margin: 0;
+}
+.grid-mini-1-up {
+  display: grid;
+  grid-template-columns: 320px 320px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "seg1 seg2";
+  height: 24vh;
+  padding: 0;
+  margin: 0;
+}
+.grid-mini-1-down {
+  display: grid;
+  grid-template-columns: 220px 420px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "seg3 seg4";
+  height: 24vh;
+  padding: 0;
+  margin: 0;
+}
+
 
 .grid-inside-up {
   display: grid;
@@ -157,7 +185,7 @@ element.style {
   margin:  10px 10px 0;
   /*max-width: 95vw;*/
   max-height:35vh;
-  width:62.5vw;
+  width:64.5vw;
 /*  padding: 10px 10px 0;*/
 }
 
@@ -165,7 +193,7 @@ element.style {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-  max-width: 300px;
+  max-width: 520px;
 }
 
 .calendar1 {
@@ -265,8 +293,8 @@ element.style {
 .main {
   grid-area: main;
   background-color: #faf9f8;
-  padding-left: 40px;
-  padding-right: 32px;
+  padding-left: 15px;
+  padding-right: 20px;
   margin-bottom: 0;
   padding-bottom: 0;
   max-width: calc(100vw - 320px);
