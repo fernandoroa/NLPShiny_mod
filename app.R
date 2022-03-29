@@ -9,6 +9,7 @@ library(leaflet)
 library(DT)
 library(mongolite)
 library(dplyr)
+library(maps)
 
 if (file.exists("outfiles/cash_df.csv")) {
   file.remove("outfiles/cash_df.csv")
