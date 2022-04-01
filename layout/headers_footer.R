@@ -1,4 +1,4 @@
-logo <- img(src = "appsilon-logo.png", class = "logo")
+logo <- img(src = "logoNLP.png", class = "logo")
 
 far_items <- list(
   list(
@@ -39,7 +39,7 @@ header_left <- tagList(logo,
 footer <- Stack(
   horizontal = T,
   tokens = list(childrenGap = 150),
-  Text(variant = "large", "Built with ❤ by Appsilon", block = TRUE),
+  Text(variant = "large", "Built by Fernando Roa & Patrick Alverga", block = TRUE),
   Text(variant = "medium", nowrap = FALSE, 
-       "If you'd like to learn more, react out to us at hello@appsilon.com")
+       "Backbone based on https://github.com/Appsilon/shiny.fluent")
 )

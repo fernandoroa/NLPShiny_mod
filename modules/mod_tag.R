@@ -29,7 +29,7 @@ tag_server <- function(id, vars_unifier) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
-    rv <- reactiveValues()
+    rv <- reactiveValues(tag_active=0)
 
     observeEvent(input$tag_button, ignoreInit = T, {
       if (file.exists("outfiles/cash_df.csv")) {
@@ -73,7 +73,8 @@ tag_server <- function(id, vars_unifier) {
 
         dataset[which(dataset$service_type == "Cash Transfer"), ]$nlp_tag <- cash_tags
         rv$cash_cat <- unique(cash_tags)
-        shinyjs::enable("cash_select_UI_id", asis = T)
+        shinyjs::enable("cash_select_UI_id1", asis = T)
+        shinyjs::enable("cash_select_UI_id2", asis = T)
       }
 
       if (nrow(health_df) > 0) {
@@ -87,14 +88,20 @@ tag_server <- function(id, vars_unifier) {
 
         dataset[which(dataset$service_type == "Healthcare"), ]$nlp_tag <- health_tags
         rv$health_cat <- unique(health_tags)
-        shinyjs::enable("health_select_UI_id", asis = T)
+        shinyjs::enable("health_select_UI_id1", asis = T)
+        shinyjs::enable("health_select_UI_id2", asis = T)
+        
       }
 
       rv$dataset_tag <- dataset
+      rv$tag_active <- rv$tag_active+1
     })
 
     return(
       list(
+        tag_active = reactive({
+          rv$tag_active
+        }),
         dataset_tag = reactive({
           rv$dataset_tag
         }),

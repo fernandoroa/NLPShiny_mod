@@ -111,7 +111,15 @@ card6 <- div(
   )
 )
 
-about_page <- tagList(
+intro_page <- tagList(
+  div(style="margin-left:4px;",
+      br(),
+      h2("Introduction")
+      ,br()
+  )
+)
+
+howto_page <- tagList(
   div(style="margin-left:4px;",
       br(),
       h2("Pages functionality")
@@ -148,7 +156,7 @@ about_page <- tagList(
     div(
       class = "grid-mini-2",
       div(class="seg5",
-      segment(style="padding:20px;min-height:23vh;",
+      segment(style="padding:20px;min-height:240px;",
               card5
       )
       ),
@@ -157,10 +165,9 @@ about_page <- tagList(
               card6
       )
     )
-  )
+   )
   )
  )
-
 )
 
 main_page <- tagList(
@@ -204,8 +211,6 @@ main_page <- tagList(
                     div(
                       style = "padding:20px;",
                       card1
-                      # verbatimTextOutput("irisText"
-                      #                    , height = 640
                     )
                   )
               )
@@ -221,5 +226,6 @@ main_page <- tagList(
 pages <- c(list(
   route("/", main_page),
   route("inputform", input_form_page),
-  route("about", about_page)
+  route("howto", howto_page),
+  route("intro", intro_page)
 ))

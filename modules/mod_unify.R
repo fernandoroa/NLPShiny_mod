@@ -23,7 +23,8 @@ unifier_server <- function(id, dataset_init, vars_submit,
       cash_cat = F,
       region = 1,
       lat = lat1,
-      lng = lng1
+      lng = lng1,
+      active_tag = 0
     )
 
     observe({
@@ -36,17 +37,17 @@ unifier_server <- function(id, dataset_init, vars_submit,
       values[["dataset_not_subset"]] <- NULL
       values[["allow_sub"]] <- vars_submit$allow_sub()
 
-      shinyjs::disable("cash_select_UI_id", asis = T)
-      shinyjs::disable("health_select_UI_id", asis = T)
       shinyjs::enable("mod_tag-tag_button", asis = T)
     }) %>% bindEvent(vars_submit$submit(), ignoreInit = T)
 
     observe({
-      values[["dataset"]] <- vars_tag$dataset_tag()
+      values[["dataset"]]       <- vars_tag$dataset_tag()
       values[["dataset_whole"]] <- vars_tag$dataset_tag()
-      values[["cash_cat"]] <- vars_tag$cash_cat()
-      values[["health_cat"]] <- vars_tag$health_cat()
-    }) %>% bindEvent(vars_tag$dataset_tag(), ignoreInit = T)
+      values[["cash_cat"]]      <- vars_tag$cash_cat()
+      values[["health_cat"]]    <- vars_tag$health_cat()
+      values[["active_tag"]]    <- values$active_tag + 1
+      
+    }) %>% bindEvent(vars_tag$tag_active(), ignoreInit = T)
 
     observe({
       values[["dataset"]] <- vars_cash$dataset_subset()
@@ -58,6 +59,9 @@ unifier_server <- function(id, dataset_init, vars_submit,
 
     return(
       list(
+        active_tag = reactive({
+          values$active_tag
+        }),
         dataset = reactive({
           values$dataset
         }),

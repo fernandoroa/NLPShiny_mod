@@ -79,7 +79,7 @@ server <- function(input, output, session) {
   #   inputs
   #
 
-  vars_submit <- submit_server("mod_submit", dataset_init)
+  vars_submit <- submit_server("mod_submit")
 
   #
   # tag

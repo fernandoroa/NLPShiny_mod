@@ -157,10 +157,10 @@ submit_ui <- function(id) {
 # server
 #
 
-submit_server <- function(id, dataset) {
+submit_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
-    rv <- reactiveValues()
+    rv <- reactiveValues(submit=0)
 
     output$africa_country_select <- renderUI({
       div(
@@ -255,7 +255,12 @@ submit_server <- function(id, dataset) {
     observeEvent(input$submit,
       ignoreInit = T,
       {
+        shinyjs::disable("cash_select_UI_id1", asis = T)
+        shinyjs::disable("health_select_UI_id1", asis = T)
+        shinyjs::disable("cash_select_UI_id2", asis = T)
+        shinyjs::disable("health_select_UI_id2", asis = T)
         rv$allow_sub <- F
+        rv$submit <- rv$submit+1
 
         if (input$region_input == 1) {
           collection_name <- "colombia_big"
@@ -428,7 +433,7 @@ submit_server <- function(id, dataset) {
     return(
       list(
         submit = reactive({
-          input$submit
+          rv$submit
         }),
         dataset = reactive({
           rv$dataset

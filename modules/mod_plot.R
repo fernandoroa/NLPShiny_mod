@@ -8,7 +8,7 @@
 
 mod_plot_ui <- function(id) {
   ns <- NS(id)
-  plotOutput(ns("minimap_plot"), height=180 )
+  plotOutput(ns("minimap_plot"), height=170 )
 }
 
 #
