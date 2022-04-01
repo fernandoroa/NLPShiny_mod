@@ -111,11 +111,70 @@ card6 <- div(
   )
 )
 
+
+card7list<-list(
+  "The shiny app is connected to a source database of community feedback.
+This feedback is provided continuously to NGOs (into the database of a third party - here as PoC only, not the real database)"
+,
+"App PoC: The feedback should be constantly updated (mod. form), filtered (mod. submit), 
+whenever needed tagged (tag module), based on a NLP model developed using a 
+subset of tagged data (stored in .pkl files)."
+,
+"Finally, for the health and cash service types (models), text can be subset (mod. services).
+This way NGOs can attend and prioritize solutions for communities."
+)
+
+card8list<-list(
+  "The python model is precomputed, saved in .pkl files,
+  and loaded by python scripts, from a call in the R module
+  `tag`. The pertinent python notebook developed in group is on the gitlab
+  repository. In the notebook, the accepted model is SVC. See the 'About' link for the
+  repositories"
+  ,
+  "Where is python in the repository?"
+  ,
+  "- `Dockerfile` file",
+  "- `requirements.txt` file",
+  "- `py` folder for scripts developed by me",
+  "- models are saved in `.pkl` files (`pkl` folder)",
+  "- See the `tag` module in folder `modules` for the calls `system('python3...`"
+)
+
 intro_page <- tagList(
   div(style="margin-left:4px;",
       br(),
       h2("Introduction")
-      ,br()
+      ,br(),
+      div(style="max-width:33vw;",
+        segment(style="padding:20px;",
+                div(
+                  Stack(
+                    tokens = list(childrenGap = 15),
+                    Text(
+                      variant = "xLarge",
+                      "Business problem",
+                      block = F
+                    ),
+                    lapply(card7list, function(x) {Text(x)
+                    })
+                  )
+                )
+        ),
+        segment(style="padding:20px;",
+                div(
+                  Stack(
+                    tokens = list(childrenGap = 15),
+                    Text(
+                      variant = "xLarge",
+                      "Which model is used and how?",
+                      block = F
+                    ),
+                    lapply(card8list, function(x) {Text(x)
+                    })
+                  )
+                )
+        )
+      ),
   )
 )
 

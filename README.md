@@ -32,7 +32,7 @@ In the gitlab repository are the python notebook files (models),
 
 The shiny app is connected to a source database of community feedback.
 This feedback is provided continuously to NGOs (into the database of a
-third part - here as PoC only, not the real database)
+third party - here as PoC only, not the real database)
 
 App PoC: The feedback should be constantly updated (form page), filtered
 (mod. submit), whenever needed tagged (tag module), based on a NLP model
