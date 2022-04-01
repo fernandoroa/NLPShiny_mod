@@ -1,6 +1,8 @@
 NLP repo. with modules - without rhino/box
 ================
 
+<img src=readme_logo.png align="right" width="12%" hspace="50">
+
 ### App
 
 <https://nlp-kwwxur3qea-uc.a.run.app>
@@ -73,7 +75,7 @@ repository, see above. In the notebook, the accepted model is SVC
 
 ### What is missing ?
 
--   rhino/box (integrate with rhino repository) \[optional (Marek)\]
+-   rhino/box (integrate with rhino repository) (optional, Marek)
 -   module wordcloud
 -   translation for classifying Africa community feedback (english)
 -   video for Shiny Conference

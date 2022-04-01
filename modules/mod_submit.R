@@ -108,7 +108,7 @@ submit_ui <- function(id) {
             class = "third-container",
             div(
               style = style_top_bottom,
-              strong("Satified")
+              strong("Satisfied")
             ),
             multiple_checkbox(
               input_id = ns("satisfiedInput"),
