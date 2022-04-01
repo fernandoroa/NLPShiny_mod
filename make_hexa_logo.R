@@ -13,12 +13,12 @@
       
       {
         
-        text(5-.2, 6-2,"NLP",cex=2.5, font=2)
-        text(5-.2, 2.5-2,"tag",cex=2.5, font=2)
+        text(5-.4, 6-2,"NLP",cex=2.5, font=2)
+        text(5-.4, 2.5-2,"tag",cex=2.5, font=2)
         
           x1<-6
           y1<-3
-          x2<-10+1
+          x2<-10+.5
           y2<-seq(1,12, by=3)[1:3]-4.5
         }
         
@@ -29,10 +29,10 @@
         mapply(FUN= function(x1,y1,x2,y2,z1) text(x=(c(0)*x1)+x2+2, y= (c(0.35)*y1)+y2
                                                   , col="black", label=z1, 
                                                   font=2, pos=4,
-                                                  cex=1.5)
+                                                  cex=2)
                ,x1=x1,y1=y1,x2=x2,y2=y2, z1=z1[1:3])
         
-        x2<-7+3
+        x2<-7+2.7
         
         x1<-x1-2
         
