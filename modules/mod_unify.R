@@ -9,7 +9,7 @@
 #' @param vars_unifier      set of objects shared among modules
 #' @return list with data.frame and categ. and numeric variables
 
-unifier_server <- function(id, dataset_init, vars_submit,
+unifier_server <- function(id, dataset_init, vars_filter,
                            vars_tag, vars_cash, vars_health) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
@@ -28,17 +28,17 @@ unifier_server <- function(id, dataset_init, vars_submit,
     )
 
     observe({
-      values[["dataset"]] <- vars_submit$dataset()
-      values[["dataset_whole"]] <- vars_submit$dataset()
+      values[["dataset"]] <- vars_filter$dataset()
+      values[["dataset_whole"]] <- vars_filter$dataset()
 
-      values[["region"]] <- vars_submit$region()
-      values[["lat"]] <- vars_submit$lat()
-      values[["lng"]] <- vars_submit$lng()
+      values[["region"]] <- vars_filter$region()
+      values[["lat"]] <- vars_filter$lat()
+      values[["lng"]] <- vars_filter$lng()
       values[["dataset_not_subset"]] <- NULL
-      values[["allow_sub"]] <- vars_submit$allow_sub()
+      values[["allow_sub"]] <- vars_filter$allow_sub()
 
       shinyjs::enable("mod_tag-tag_button", asis = T)
-    }) %>% bindEvent(vars_submit$submit(), ignoreInit = T)
+    }) %>% bindEvent(vars_filter$submit(), ignoreInit = T)
 
     observe({
       values[["dataset"]]       <- vars_tag$dataset_tag()

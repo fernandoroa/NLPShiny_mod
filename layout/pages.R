@@ -8,138 +8,6 @@ input_form_page <- tagList(
   )
 )
 
-card1 <- div(
-  Stack(
-    tokens = list(childrenGap = 15),
-    Text(
-      variant = "xLarge",
-      "filter feedback database",
-      block = F
-    ),
-    Text(
-      "Here you can choose"
-    ),
-    Text(
-      "- region: Colombia/Africa"
-    ),
-    Text(
-      "- service types: only Healthcare and Cash can be tagged"
-    ),
-    Text(
-      "- dates, sample size and user satisfaction"
-    )
-  )
-)
-
-card2 <- div(
-  Stack(
-    tokens = list(childrenGap = 0),
-    Text(
-      variant = "xLarge",
-      "Map of selected feedback",
-      block = F
-    ),
-    mod_plot_ui("minimap")
-  )
-)
-
-card3 <- div(
-  Stack(
-    tokens = list(childrenGap = 15),
-    Text(
-      variant = "xLarge",
-      "Tag",
-      block = F
-    ),
-    Text(
-      "- Use the tag button after filtering database"
-    ),
-    Text(
-      "- After that, subset with the cash or health buttons"
-    )
-  )
-)
-
-card4 <- div(
-  Stack(
-    tokens = list(childrenGap = 15),
-    Text(
-      variant = "xLarge",
-      "Feedback table",
-      block = F
-    ),
-    Text(
-      "- After tagging, a new column will appear"
-    ),
-    Text(
-      "- After subsetting, your selection will be here"
-    )
-  )
-)
-
-card5 <- div(
-  Stack(
-    tokens = list(childrenGap = 15),
-    Text(
-      variant = "xLarge",
-      "Input form",
-      block = F
-    ),
-    Text(
-      "- Example data to feed the mongo database"
-    ),
-    Text(
-      "- The mongo db is remote, it is hosted on mongo Atlas"
-    )
-  )
-)
-
-card6 <- div(
-  Stack(
-    tokens = list(childrenGap = 15),
-    Text(
-      variant = "xLarge",
-      "Action buttons",
-      block = F
-    ),
-    Text(
-      "- Upload form data to the database"
-    ),
-    Text(
-      "- Remove last entry from the mongo db"
-    )
-  )
-)
-
-
-card7list<-list(
-  "The shiny app is connected to a source database of community feedback.
-This feedback is provided continuously to NGOs (into the database of a third party - here as PoC only, not the real database)"
-,
-"App PoC: The feedback should be constantly updated (mod. form), filtered (mod. submit), 
-whenever needed tagged (tag module), based on a NLP model developed using a 
-subset of tagged data (stored in .pkl files)."
-,
-"Finally, for the health and cash service types (models), text can be subset (mod. services).
-This way NGOs can attend and prioritize solutions for communities."
-)
-
-card8list<-list(
-  "The python model is precomputed, saved in .pkl files,
-  and loaded by python scripts, from a call in the R module
-  `tag`. The pertinent python notebook developed in group is on the gitlab
-  repository. In the notebook, the accepted model is SVC. See the 'About' link for the
-  repositories"
-  ,
-  "Where is python in the repository?"
-  ,
-  "- `Dockerfile` file",
-  "- `requirements.txt` file",
-  "- `py` folder for scripts developed by me",
-  "- models are saved in `.pkl` files (`pkl` folder)",
-  "- See the `tag` module in folder `modules` for the calls `system('python3...`"
-)
-
 intro_page <- tagList(
   div(style="margin-left:4px;",
       br(),
@@ -233,7 +101,7 @@ main_page <- tagList(
   div(
     class = "grid-inside-up",
     segment(
-      submit_ui("mod_submit")
+      filter_ui("mod_filter")
     ),
     div(
       class = "map-container",

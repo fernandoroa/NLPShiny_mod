@@ -28,15 +28,16 @@ source("mongo/mongo_fun.R")
 dataset_init <- basic_colombia()
 
 source("modules/mod_map.R")
-source("modules/mod_submit.R")
+source("modules/mod_filter.R")
 source("modules/mod_table.R")
 source("modules/mod_unify.R")
 source("modules/mod_tag.R")
-source("modules/mod_services.R")
+source("modules/mod_servicetype.R")
 source("modules/mod_form.R")
-source("modules/mod_plot.R")
+source("modules/mod_howto_map.R")
 
 source("layout/headers_footer.R")
+source("layout/cards.R")
 source("layout/pages.R")
 source("layout/sidebar.R")
 
@@ -73,13 +74,13 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   router$server(input, output, session)
   
-  mod_plot_server("minimap")
+  mod_howto_map_server("minimap")
 
   #
   #   inputs
   #
 
-  vars_submit <- submit_server("mod_submit")
+  vars_filter <- filter_server("mod_filter")
 
   #
   # tag
@@ -91,9 +92,9 @@ server <- function(input, output, session) {
   #   services
   #
   
-  vars_cash <- servicetype_server("cash", vars_unifier, vars_submit)
+  vars_cash <- servicetype_server("cash", vars_unifier, vars_filter)
 
-  vars_health <- servicetype_server("health", vars_unifier, vars_submit)
+  vars_health <- servicetype_server("health", vars_unifier, vars_filter)
 
   #
   #  gather and unify
@@ -101,7 +102,7 @@ server <- function(input, output, session) {
 
   vars_unifier <- unifier_server(
     "ns_unifier", dataset_init,
-    vars_submit, vars_tag,
+    vars_filter, vars_tag,
     vars_cash,
     vars_health
   )

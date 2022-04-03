@@ -9,7 +9,7 @@ servicetype_ui <- function(id) {
   )
 }
 
-servicetype_server <- function(id, vars_unifier, vars_submit) {
+servicetype_server <- function(id, vars_unifier, vars_filter) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     rv$alist <- list()
@@ -63,7 +63,7 @@ servicetype_server <- function(id, vars_unifier, vars_submit) {
     })
       
     observeEvent(
-        vars_submit$submit()
+        vars_filter$submit()
       , ignoreInit = T,
       {
         rv$alist$ds_copy <- vars_unifier$dataset_whole()

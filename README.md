@@ -9,16 +9,16 @@ NLP repo. with modules - without rhino/box
 
 ### Context
 
-This shiny repository is a modular version of the one developed by me in
-the ds4a (data science for all course) CorrelationOne project challenge.
-\[<https://gitlab.com/ferroao/nlpfeedback> ,
+This shiny-app repository is a modular version of the app developed by
+Fernando in the ds4a (data science for all course) CorrelationOne
+project challenge. \[<https://gitlab.com/ferroao/nlpfeedback> ,
 <https://nlpapp-rwjey56xuq-uc.a.run.app>\]
 
 Credentials for mongodb are not available in this repository, following
 ds4a rules.
 
 In the gitlab repository are the python notebook files (models),
-‘written’ in group, not only by me.
+‘written’ in group, not only by the authors of this repository.
 
 ### Objectives
 
@@ -55,7 +55,7 @@ repository, see above. In the notebook, the accepted model is SVC
 
 -   `Dockerfile` file
 -   `requirements.txt` file
--   `py` folder for scripts developed by me
+-   `py` folder for scripts developed by Fernando
 -   models are saved in `.pkl` files (`pkl` folder)
 -   See the `tag` module in folder `modules` for the calls
     `system("python3...`
