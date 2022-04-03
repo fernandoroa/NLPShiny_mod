@@ -6,16 +6,16 @@
 #   UI, leaflet map output
 #
 
-mod_plot_ui <- function(id) {
+mod_howto_map_ui <- function(id) {
   ns <- NS(id)
-  plotOutput(ns("minimap_plot"), height=170 )
+  plotOutput(ns("minimap_plot"), height=160 )
 }
 
 #
 #   Server
 #
 
-mod_plot_server <- function(id) {
+mod_howto_map_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     output$minimap_plot <- renderPlot({
       par(mar=rep(0,4))

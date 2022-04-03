@@ -1,5 +1,5 @@
 #
-# submit module
+# filter module
 #
 
 #' @description module to allow choosing a data.frame name and its feedback from
@@ -9,7 +9,7 @@
 #' module namespace, see return, used for feedback
 #' @return list with data.frame name (string) selected
 
-submit_ui <- function(id) {
+filter_ui <- function(id) {
   ns <- NS(id)
   tagList(
     div(
@@ -157,7 +157,7 @@ submit_ui <- function(id) {
 # server
 #
 
-submit_server <- function(id) {
+filter_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     rv <- reactiveValues(submit=0)
