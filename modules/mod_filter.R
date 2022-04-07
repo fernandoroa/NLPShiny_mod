@@ -17,7 +17,7 @@ filter_ui <- function(id) {
       h3("Options to filter feedback database")
     ),
     split_layout(
-      style = "background:#FFFFFF;height:93%",
+      style = "background:#FFFFFF;height:93%;min-height:360px;",
       cell_widths = c("30%", "5%", "30%", "5%", "30%"),
       tagList(
         div(
@@ -166,7 +166,8 @@ filter_server <- function(id) {
       div(
         style = style_top,
         selectInput(
-          ns("africa_country_input"), "Country",
+          ns("africa_country_input"), 
+          "Country",
           afr_countries
         )
       )

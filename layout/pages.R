@@ -100,8 +100,10 @@ howto_page <- tagList(
 main_page <- tagList(
   div(
     class = "grid-inside-up",
-    segment(
+    div(class="filter-container",
+    segment(style="min-height:400px;",
       filter_ui("mod_filter")
+    )
     ),
     div(
       class = "map-container",

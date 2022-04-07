@@ -3,6 +3,11 @@ NLP repo. with modules - without rhino/box
 
 <img src=readme_logo.png align="right" width="12%" hspace="50">
 
+### Important
+
+-   This repository is deprecated, please go to:
+    <https://github.com/Appsilon/NLPShiny/tree/mod_and_rhino>
+
 ### App
 
 <https://nlp-kwwxur3qea-uc.a.run.app>

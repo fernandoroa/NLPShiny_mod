@@ -47,14 +47,12 @@ servicetype_server <- function(id, vars_unifier, vars_filter) {
       )
     })
 
-    # observeEvent(vars_unifier[[paste0(id, "_cat")]](), ignoreInit = TRUE, {
       observeEvent(vars_unifier$active_tag(), ignoreInit = TRUE, {
         
       update_dropdown_input(
         session,
         paste0(id, "_input"),
         choices = vars_unifier[[paste0(id, "_cat")]](),
-        # choices = "something",
         value   = vars_unifier[[paste0(id, "_cat")]]()[1]
       )
 
